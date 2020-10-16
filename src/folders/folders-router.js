@@ -8,7 +8,7 @@ const jsonParser = express.json()
 
 const folderGenerator = folder => ({
     id: folder.id,
-    folder_name: xss(folder.folder_name)
+    name: xss(folder.name)
 })
 
 foldersRouter
@@ -22,8 +22,8 @@ foldersRouter
             .catch(next)
     })
     .post(jsonParser, (req, res) => {
-        const {folder_name} = req.body;
-        const newFolder = {folder_name}
+        const {name} = req.body;
+        const newFolder = {name}
 
         for (const [key, value] of Object.entries(newFolder)) {
             if (value == null) {

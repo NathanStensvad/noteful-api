@@ -9,9 +9,10 @@ const jsonParser = express.json()
 
 const noteGenerator = note => ({
     id: note.id,
-    title: xss(note.title),
-    content: xss(note.content),
-    folder_id: note.folder_id
+    name: xss(note.name),
+    modified: note.modified,
+    folderId: note.folderid,
+    content: xss(note.content)
 })
 
 notesRouter
@@ -25,8 +26,8 @@ notesRouter
             .catch(next)
     })
     .post(jsonParser, (req, res) => {
-        const { title, content, folder_id } = req.body;
-        const newNote = { title, content, folder_id }
+        const { name, modified, folderId, content } = req.body;
+        const newNote = { name, modified, folderId, content }
 
         for (const [key, value] of Object.entries(newNote)) {
             if (value == null) {
