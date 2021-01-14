@@ -4,7 +4,6 @@ module.exports = {
   "migrationsDirectory": "migrations",
   "driver": "pg",
   "connectionString": process.env.DATABASE_URL,
-  "ssl": true
 }
 
 console.log(module.exports.connectionString)
